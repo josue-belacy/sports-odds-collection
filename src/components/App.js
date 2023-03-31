@@ -19,9 +19,23 @@ function App() {
     };
     getOdds();
   }, []);
-  // using 1 bracket and no dependencies in order to only fetch once
-  console.log(odds);
-  return <div>Hello World</div>;
+
+  if (!odds) {
+    return null;
+  }
+
+  console.log(odds, "::odds");
+  return (
+    <ul>
+      {odds["basketball_nba"].map((game) => {
+        return (
+          <li>
+            {game.teams[0]} - {game.teams[1]}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 export default App;
