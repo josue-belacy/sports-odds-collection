@@ -1,4 +1,5 @@
 import axios from "axios";
+import { error } from "console";
 
 const getOptions = (key) => {
   return {
@@ -23,12 +24,12 @@ export const fetchOdds = async (key) => {
   try {
     const result = await axios.request(options);
 
-    console.log(result, "::result");
     return {
       success: true,
       data: result.data.data,
     };
   } catch (e) {
-    console.log(e);
+    error: true,
+    data: e
   }
 };
