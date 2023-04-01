@@ -10,30 +10,28 @@ function App() {
       const result = await fetchOdds("basketball_nba");
 
       if (result.success) {
-        setOdds({ ...odds, basketball_nba: result.data });
+        setOdds((prevOdds) => ({ ...prevOdds, basketball_nba: result.data }));
       }
 
       if (result.error) {
         console.log("Things went wrong");
       }
     };
+
     getOdds();
   }, []);
 
   if (!odds) {
-    return null;
+    return <div>Loading...</div>;
   }
 
-  console.log(odds, "::odds");
   return (
     <ul>
-      {odds["basketball_nba"].map((game) => {
-        return (
-          <li>
-            {game.teams[0]} - {game.teams[1]}
-          </li>
-        );
-      })}
+      {odds["basketball_nba"].map((game, index) => (
+        <li key={index}>
+          {game.teams[0]} - {game.teams[1]}
+        </li>
+      ))}
     </ul>
   );
 }

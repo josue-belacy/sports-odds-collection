@@ -29,7 +29,9 @@ export const fetchOdds = async (key) => {
       data: result.data.data,
     };
   } catch (e) {
-    error: true,
-    data: e
+    return {
+      error: true,
+      data: e,
+    };
   }
 };
