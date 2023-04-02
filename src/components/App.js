@@ -3,14 +3,16 @@ import { fetchOdds } from "../api/fetchOdds";
 import "../stylesheets/App.scss";
 
 function App() {
-  const [odds, setOdds] = useState(null);
+  const [odds, setOdds] = useState([]);
 
   useEffect(() => {
     const getOdds = async () => {
       const result = await fetchOdds("basketball_nba");
 
+      console.log(result);
+
       if (result.success) {
-        setOdds((prevOdds) => ({ ...prevOdds, basketball_nba: result.data }));
+        setOdds(result.data);
       }
 
       if (result.error) {
@@ -25,13 +27,38 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  console.log({ odds });
+
+  const deriveOutcomes = (game) => {
+    const draftkings = game.bookmakers.find((book) => {
+      return book.key === "draftkings";
+    });
+
+    const marketOdds = (draftkings?.markets || []).find((market) => {
+      return market.key === "spreads";
+    });
+
+    return marketOdds.outcomes || [];
+
+    // return an array of outcomse
+  };
+
+  /**
+   * bookmakers => find draftkings
+   * look at markets => find spread => outcomes
+   */
+
   return (
     <ul>
-      {odds["basketball_nba"].map((game, index) => (
-        <li key={index}>
-          {game.teams[0]} - {game.teams[1]}
-        </li>
-      ))}
+      {odds.map((game) => {
+        const [game1, game2] = deriveOutcomes(game);
+
+        return (
+          <li key={game.id}>
+            {game1.name} {game1.price} -- {game2.name} {game2.price}
+          </li>
+        );
+      })}
     </ul>
   );
 }
