@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap/Container";
+import { Row } from "react-bootstrap/Row";
+import { Col } from "react-bootstrap/Col";
+import { Listgroup } from "react-bootstrap/Listgroup";
 import { fetchOdds } from "../api/fetchOdds";
+import { sportList } from "../constant";
+
 import "../stylesheets/App.scss";
 
 function App() {
@@ -54,8 +60,21 @@ function App() {
         const [game1, game2] = deriveOutcomes(game);
 
         return (
+          <>
+      <Container>
+        <Row>
+          <Col xs={12} md={2}>
+
+          </Col>
+
+          <Col xs={12} md={10}>
+          </Col>
+
+        </Row>
+      </Container>
+    </>
           <li key={game.id}>
-            {game1.name} {game1.price} -- {game2.name} {game2.price}
+            {game1.name} sa- {game2.name}{" "}
           </li>
         );
       })}
