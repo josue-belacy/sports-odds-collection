@@ -46,7 +46,7 @@ function App() {
 
     return marketOdds.outcomes || [];
 
-    // return an array of outcomse
+    // return an array of outcomes
   };
 
   /**
