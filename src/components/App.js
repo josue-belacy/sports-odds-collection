@@ -64,7 +64,19 @@ function App() {
       <Container>
         <Row>
           <Col xs={12} md={2}>
+          <listgrooup>
+            {
+              sportList.map((sport) => {
+                return (
+                  <Listgroup.item key={sport.key} as="button"
+                  onCLicl ={() =>}
+                  >
 
+                  </Listgroup.item>
+                )
+              })
+            }
+          </listgrooup>
           </Col>
 
           <Col xs={12} md={10}>
