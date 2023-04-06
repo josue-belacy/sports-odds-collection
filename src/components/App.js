@@ -60,7 +60,7 @@ function App() {
         const [game1, game2] = deriveOutcomes(game);
 
         return (
-          <>
+          <ul>
       <Container>
         <Row>
           <Col xs={12} md={2}>
@@ -83,8 +83,8 @@ function App() {
           </Col>
 
         </Row>
-      </Container>
-    </>
+      <Container/>
+    <ul/>
           <li key={game.id}>
             {game1.name} sa- {game2.name}{" "}
           </li>
