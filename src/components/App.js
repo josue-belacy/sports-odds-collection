@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap/Container";
-import { Row } from "react-bootstrap/Row";
-import { Col } from "react-bootstrap/Col";
-import { Listgroup } from "react-bootstrap/Listgroup";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Listgroup from "react-bootstrap/Listgroup";
 import { fetchOdds } from "../api/fetchOdds";
 import { sportList } from "../constant";
+import { SportsCard } from "./SportsCard";
 
 import "../stylesheets/App.scss";
 
@@ -14,8 +15,6 @@ function App() {
   useEffect(() => {
     const getOdds = async () => {
       const result = await fetchOdds("basketball_nba");
-
-      console.log(result);
 
       if (result.success) {
         setOdds(result.data);
@@ -69,7 +68,7 @@ function App() {
               sportList.map((sport) => {
                 return (
                   <Listgroup.item key={sport.key} as="button"
-                  onCLicl ={() =>}
+                  onCLick ={() =>}
                   >
 
                   </Listgroup.item>
