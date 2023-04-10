@@ -76,6 +76,10 @@ function App() {
               })
             }
           </listgroup>
+
+          <SportsCard>
+            
+          </SportsCard>
           </Col>
 
           <Col xs={12} md={10}>
