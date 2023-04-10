@@ -63,7 +63,7 @@ function App() {
       <Container>
         <Row>
           <Col xs={12} md={2}>
-          <listgrooup>
+          <listgroup>
             {
               sportList.map((sport) => {
                 return (
@@ -75,14 +75,14 @@ function App() {
                 )
               })
             }
-          </listgrooup>
+          </listgroup>
           </Col>
 
           <Col xs={12} md={10}>
           </Col>
 
         </Row>
-      <Container/>
+      </Container>
     <ul/>
           <li key={game.id}>
             {game1.name} sa- {game2.name}{" "}
