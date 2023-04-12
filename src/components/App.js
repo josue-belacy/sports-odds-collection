@@ -54,47 +54,52 @@ function App() {
    */
 
   return (
-    <ul>
-      {odds.map((game) => {
-        const [game1, game2] = deriveOutcomes(game);
+    <div>
+  <ul>
+    {odds.map((game) => {
+      const [game1, game2] = deriveOutcomes(game);
 
-        return (
-          <ul>
-      <Container>
-        <Row>
-          <Col xs={12} md={2}>
-          <listgroup>
-            {
-              sportList.map((sport) => {
-                return (
-                  <Listgroup.item key={sport.key} as="button"
-                  onCLick ={() =>}
-                  >
+      return (
+        <ul>
+    <Container>
+      <Row>
+        <Col xs={12} md={2}>
+        <listgroup>
+          {
+            sportList.map((sport) => {
+              return (
+                <Listgroup.Item key={sport.key} as="button"
+                onCLick ={() =>}
+                >
 
-                  </Listgroup.item>
-                )
-              })
-            }
-          </listgroup>
+                </Listgroup.Item>
+              )
+            })
+          }
+        </listgroup>
 
-          <SportsCard>
-            
-          </SportsCard>
-          </Col>
+        <SportsCard>
+          
+        </SportsCard>
+        </Col>
 
-          <Col xs={12} md={10}>
-          </Col>
+        <Col xs={12} md={10}>
+        </Col>
 
-        </Row>
-      </Container>
-    <ul/>
-          <li key={game.id}>
-            {game1.name} sa- {game2.name}{" "}
-          </li>
-        );
-      })}
-    </ul>
-  );
+      </Row>
+    </Container>
+  <ul/>
+  <ul>
+        <li key={game.id}>
+          {game1.name} sa- {game2.name}{" "}
+        </li>
+      );
+    )
+  </ul>
+  </ul>
+  </ul>
+  </div>
+);
 }
 
 export default App;
