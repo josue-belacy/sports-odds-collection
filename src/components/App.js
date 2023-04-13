@@ -6,18 +6,19 @@ import Listgroup from "react-bootstrap/Listgroup";
 import { fetchOdds } from "../api/fetchOdds";
 import { sportList } from "../constant";
 import { SportsCard } from "./SportsCard";
-
 import "../stylesheets/App.scss";
+import { ListGroupItem } from "react-bootstrap";
 
 function App() {
-  const [odds, setOdds] = useState([]);
-
+  const [odds, setOdds] = useState(null);
+  const [activeSport, setActiveSport] = useState(basketball_nba)
+//
   useEffect(() => {
     const getOdds = async () => {
       const result = await fetchOdds("basketball_nba");
 
       if (result.success) {
-        setOdds(result.data);
+        setOdds({...odds, basketball_nba: result.data});
       }
 
       if (result.error) {
@@ -32,8 +33,60 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  console.log({ odds });
-
+  console.log(odds, '::odds')
+  return (
+    <>
+    <Container>
+      <Row>
+        <Col xs={12} md={2}>
+          <Listgroup>
+            {sportList.map(sport => {
+              return (
+                <ListGroup.Item
+                  key={sport.key}
+                  as='button'
+                  onCLick={() => setActiveSport(sport.key)}
+                  active={activeSport === sport.key}
+                >
+                  {sport.view}
+                </ListGroup.Item>
+              )
+            })}
+          </Listgroup>
+        </Col>
+        <Col xs={12} md={10}>
+          <Row>
+            {odds[activeSport] ? (
+              odds[activeSport].map(sportsGame => {
+                return (
+                  <Col 
+                  >
+                  </Col>
+                )
+              })
+            )}
+          </Row>
+          <Listgroup>
+            {sportList.map(sport => {
+              return (
+                <ListGroup.Item
+                  key={sport.key}
+                  as='button'
+                  onCLick={() => setActiveSport(sport.key)}
+                  active={activeSport === sport.key}
+                >
+                  {sport.view}
+                </ListGroup.Item>
+              )
+            })}
+          </Listgroup>
+        </Col>
+      </Row>
+    </Container>
+    </>
+  )
+  
+  // Review from here
   const deriveOutcomes = (game) => {
     const draftkings = game.bookmakers.find((book) => {
       return book.key === "draftkings";
